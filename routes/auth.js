@@ -7,12 +7,12 @@ const {
   edit,
   deleteUser,
 } = require("../controllers/userController");
-const { verifyToken } = require("../middleware/auth");
+const auth = require("../middleware/auth");
 
 router.post("/register", register);
 router.post("/login", login);
-router.post("/logout", verifyToken, logout);
-router.put("/edit", verifyToken, edit);
-router.delete("/delete", verifyToken, deleteUser);
+router.post("/logout", auth, logout);
+router.put("/edit", auth, edit);
+router.delete("/delete", auth, deleteUser);
 
 module.exports = router;

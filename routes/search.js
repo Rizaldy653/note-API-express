@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { searchNote } = require("../controllers/user");
-const { verifyToken } = require("../middleware/auth");
+const { searchNote } = require("../controllers/searchController");
+const auth = require("../middleware/auth");
 
-router.get("/", verifyToken, searchNote);
+router.get("/", auth, searchNote);
 
 module.exports = router;

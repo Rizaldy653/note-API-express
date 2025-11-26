@@ -2,17 +2,17 @@ const express = require("express");
 const router = express.Router();
 const {
   createNote,
-  getNote,
+  getNotes,
   getNoteById,
   editNote,
   deleteNote,
-} = require("../controllers/note");
-const { verifyToken } = require("../middleware/auth");
+} = require("../controllers/noteController");
+const auth = require("../middleware/auth");
 
-router.get("/", verifyToken, getNote);
-router.get("/:id", verifyToken, getNoteById);
-router.post("/", verifyToken, createNote);
-router.put("/edit/:id", verifyToken, editNote);
-router.delete("/delete/:id", verifyToken, deleteNote);
+router.get("/", auth, getNotes);
+router.get("/:id", auth, getNoteById);
+router.post("/", auth, createNote);
+router.put("/edit/:id", auth, editNote);
+router.delete("/delete/:id", auth, deleteNote);
 
 module.exports = router;
